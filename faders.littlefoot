@@ -1,0 +1,854 @@
+
+//** 2018, HughFays **//
+//** This Littlefoot script allows for control over DAW track Volume Faders and Pan Faders from the surface of the lightpad block**//
+
+/*
+<metadata description="16-Channel Volume and Pan Faders. Use the right-hand row of LEDs on the Lightpad block to switch between volume fader banks, and use the left-hand row of LEDs on the Lightpad block to switch between pan fader banks.">
+    <variables>
+    
+        <variable name="Fader1CC" displayName="Volume Fader 1 Midi Channel" type="int"  min = "102" max = "119" value = "102"/>
+        <variable name="Fader2CC" displayName="Volume Fader 2 Midi Channel" type="int"  min = "102" max = "119" value = "103"/>
+        <variable name="Fader3CC" displayName="Volume Fader 3 Midi Channel" type="int"  min = "102" max = "119" value = "104"/>
+        <variable name="Fader4CC" displayName="Volume Fader 4 Midi Channel" type="int"  min = "102" max = "119" value = "105"/>
+        <variable name="Fader5CC" displayName="Volume Fader 5 Midi Channel" type="int"  min = "102" max = "119" value = "102"/>
+        <variable name="Fader6CC" displayName="Volume Fader 6 Midi Channel" type="int"  min = "102" max = "119" value = "103"/>
+        <variable name="Fader7CC" displayName="Volume Fader 7 Midi Channel" type="int"  min = "102" max = "119" value = "104"/>
+        <variable name="Fader8CC" displayName="Volume Fader 8 Midi Channel" type="int"  min = "102" max = "119" value = "105"/>
+        
+        <variable name="Fader9CC" displayName="Volume Fader 9 Midi Channel" type="int"  min = "102" max = "119" value = "102"/>
+        <variable name="Fader10CC" displayName="Volume Fader 10 Midi Channel" type="int"  min = "102" max = "119" value = "103"/>
+        <variable name="Fader11CC" displayName="Volume Fader 11 Midi Channel" type="int"  min = "102" max = "119" value = "104"/>
+        <variable name="Fader12CC" displayName="Volume Fader 12 Midi Channel" type="int"  min = "102" max = "119" value = "105"/>
+        <variable name="Fader13CC" displayName="Volume Fader 13 Midi Channel" type="int"  min = "102" max = "119" value = "102"/>
+        <variable name="Fader14CC" displayName="Volume Fader 14 Midi Channel" type="int"  min = "102" max = "119" value = "103"/>
+        <variable name="Fader15CC" displayName="Volume Fader 15 Midi Channel" type="int"  min = "102" max = "119" value = "104"/>
+        <variable name="Fader16CC" displayName="Volume Fader 16 Midi Channel" type="int"  min = "102" max = "119" value = "105"/>
+
+        <variable name="Fader01CC" displayName="Fader0 Fader 1 Midi Channel" type="int"  min = "102" max = "119" value = "102"/>
+	    <variable name="Fader02CC" displayName="Fader0 Fader 2 Midi Channel" type="int"  min = "102" max = "119" value = "103"/>
+	    <variable name="Fader03CC" displayName="Fader0 Fader 3 Midi Channel" type="int"  min = "102" max = "119" value = "104"/>
+	    <variable name="Fader04CC" displayName="Fader0 Fader 4 Midi Channel" type="int"  min = "102" max = "119" value = "105"/>
+	    <variable name="Fader05CC" displayName="Fader0 Fader 5 Midi Channel" type="int"  min = "102" max = "119" value = "102"/>
+	    <variable name="Fader06CC" displayName="Fader0 Fader 6 Midi Channel" type="int"  min = "102" max = "119" value = "103"/>
+	    <variable name="Fader07CC" displayName="Fader0 Fader 7 Midi Channel" type="int"  min = "102" max = "119" value = "104"/>
+	    <variable name="Fader08CC" displayName="Fader0 Fader 8 Midi Channel" type="int"  min = "102" max = "119" value = "105"/>
+	    
+	    <variable name="Fader09CC" displayName="Fader0 Fader 9 Midi Channel" type="int"  min = "102" max = "119" value = "102"/>
+	    <variable name="Fader010CC" displayName="Fader0 Fader 10 Midi Channel" type="int"  min = "102" max = "119" value = "103"/>
+	    <variable name="Fader011CC" displayName="Fader0 Fader 11 Midi Channel" type="int"  min = "102" max = "119" value = "104"/>
+	    <variable name="Fader012CC" displayName="Fader0 Fader 12 Midi Channel" type="int"  min = "102" max = "119" value = "105"/>
+	    <variable name="Fader013CC" displayName="Fader0 Fader 13 Midi Channel" type="int"  min = "102" max = "119" value = "102"/>
+	    <variable name="Fader014CC" displayName="Fader0 Fader 14 Midi Channel" type="int"  min = "102" max = "119" value = "103"/>
+	    <variable name="Fader015CC" displayName="Fader0 Fader 15 Midi Channel" type="int"  min = "102" max = "119" value = "104"/>
+	    <variable name="Fader016CC" displayName="Fader0 Fader 16 Midi Channel" type="int"  min = "102" max = "119" value = "105"/>
+	    
+	    <variable name="Button1CC" displayName="Button Fader 1 Midi Channel" type="int"  min = "0" max = "127" value = "112"/>
+	    <variable name="Button2CC" displayName="Button Fader 2 Midi Channel" type="int"  min = "0" max = "127" value = "113"/>
+	    <variable name="Button3CC" displayName="Button Fader 3 Midi Channel" type="int"  min = "0" max = "127" value = "114"/>
+	    <variable name="Button4CC" displayName="Button Fader 4 Midi Channel" type="int"  min = "0" max = "127" value = "115"/>
+	    <variable name="Button5CC" displayName="Button Fader 5 Midi Channel" type="int"  min = "0" max = "127" value = "116"/>
+        <variable name="Button6CC" displayName="Button Fader 6 Midi Channel" type="int"  min = "0" max = "127" value = "117"/>
+	    <variable name="Button7CC" displayName="Button Fader 7 Midi Channel" type="int"  min = "0" max = "127" value = "118"/>
+	    <variable name="Button8CC" displayName="Button Fader 8 Midi Channel" type="int"  min = "0" max = "127" value = "119"/>
+	    
+	    
+    </variables>
+</metadata>
+*/
+
+//These variables range from 0-14
+
+int xPos;
+int yPos;
+
+//This variable corresponds to the 0-127 Midi velocity
+
+int fadervel1;
+int fadervel2;
+int fadervel3;
+int fadervel4;
+
+//variables to store the last "Y" co-ordinate positions (1-14) of the volume faders (used as X positions in the case of pan faders)
+
+int lastYFader1;
+int lastYFader2;
+int lastYFader3;
+int lastYFader4;
+int lastYFader5;
+int lastYFader6;
+int lastYFader7;
+int lastYFader8;
+
+int lastYFader9;
+int lastYFader10;
+int lastYFader11;
+int lastYFader12;
+int lastYFader13;
+int lastYFader14;
+int lastYFader15;
+int lastYFader16;
+
+int lastYFader01;
+int lastYFader02;
+int lastYFader03;
+int lastYFader04;
+int lastYFader05;
+int lastYFader06;
+int lastYFader07;
+int lastYFader08;
+
+int lastYFader09;
+int lastYFader010;
+int lastYFader011;
+int lastYFader012;
+int lastYFader013;
+int lastYFader014;
+int lastYFader015;
+int lastYFader016;
+
+// variables to store the last MIDI velocity (0-127) of the Volume and Fader0 faders
+
+int LastFader1Vel;
+int LastFader2Vel;
+int LastFader3Vel;
+int LastFader4Vel;
+int LastFader5Vel;
+int LastFader6Vel;
+int LastFader7Vel;
+int LastFader8Vel;
+
+int LastFader9Vel;
+int LastFader10Vel;
+int LastFader11Vel;
+int LastFader12Vel;
+int LastFader13Vel;
+int LastFader14Vel;
+int LastFader15Vel;
+int LastFader16Vel;
+
+int LastFader01Vel;
+int LastFader02Vel;
+int LastFader03Vel;
+int LastFader04Vel;
+int LastFader05Vel;
+int LastFader06Vel;
+int LastFader07Vel;
+int LastFader08Vel;
+
+int LastFader09Vel;
+int LastFader010Vel;
+int LastFader011Vel;
+int LastFader012Vel;
+int LastFader013Vel;
+int LastFader014Vel;
+int LastFader015Vel;
+int LastFader016Vel;
+
+int faderBankInteger;
+
+int convertPositionToPixel (float pos) 
+{ 
+    //the Lightpad surface x/y position values may not be exactly 0-2
+    //so assume the upper value may be a bit less than 2.
+    return int (map (pos, 0.0, 1.9, 0.0, 14.0)); 
+}
+
+int convertPositionToMidiVelocity (float pos1) 
+{ 
+    // Set explicit boundaries for edge cases
+    if (pos1 <= 0.0) 
+    {
+        return 0;  // If it's at the bottom, return 0
+    }
+    else if (pos1 >= 1.9)  // Adjust the threshold slightly lower if needed
+    {
+        return 127;  // Ensure that when it's near the top, return 127
+    }
+    else
+    {
+        // Adjust the mapping for the rest of the range
+        return int(map(pos1, 0.0, 1.9, 0.0, 127.0)); 
+    }
+}
+
+void updateFaderVal(float x, float y) 
+{
+    xPos = convertPositionToPixel(x);
+    yPos = convertPositionToPixel(y);
+
+    // Reset the correct fadervel based on the position of the touch
+    if (xPos >= 2 && xPos < 4) {
+        fadervel1 = computeFaderVal(x, y);
+    } 
+    else if (xPos >= 5 && xPos <= 7) {
+        fadervel2 = computeFaderVal(x, y);
+    }
+    else if (xPos >= 8 && xPos <= 10) {
+        fadervel3 = computeFaderVal(x, y);
+    }
+    else if (xPos >= 11 && xPos <= 13) {
+        fadervel4 = computeFaderVal(x, y);
+    }
+    
+}
+
+int computeFaderVal(float x, float y) 
+{
+
+    return 127 - convertPositionToMidiVelocity(y);
+}
+
+// Function to send CC messages only if the value has changed
+void safeSendCC(int channel, int cc, int value, int lastValue,) {
+    
+    if (abs(value - lastValue) > 0) { // Only send if the change is greater than the threshold
+        sendCC(channel, cc, value);
+    }
+}
+
+
+void touchStart (int index, float x, float y, float z, float vz) {
+       updateFaderVal(x, y);
+    
+    
+   
+   
+}
+
+
+
+void touchMove (int index, float x, float y, float z, float vz)
+
+{ 
+
+    updateFaderVal(x, y);
+}
+
+
+void touchEnd (int index, float x, float y, float z, float vz)
+
+{ 
+
+    updateFaderVal(x, y);
+    if (xPos == 14 && yPos >= 2 && yPos <4)    
+                {
+                    safeSendCC(0, Button1CC, 127, 0);
+                }
+           else if (xPos == 14 && yPos >= 5 && yPos <7)    
+                {
+                   safeSendCC(0, Button2CC, 127, 0);
+                }
+           else if (xPos == 14 && yPos >= 8 && yPos <10)    
+                {
+                    safeSendCC(0, Button3CC, 127, 0);
+                }
+           else if (xPos == 14 && yPos >= 11  && yPos <13)    
+                {
+                    safeSendCC(0, Button4CC, 127, 0);
+                }
+           else if (xPos == 0 && yPos >= 2  && yPos <4)    
+                { 
+                    safeSendCC(0, Button5CC, 127, 0);
+                }  
+           else if (xPos == 0 && yPos >= 5  && yPos <7)    
+                {
+                    safeSendCC(0, Button6CC, 127, 0);
+                }      
+           else if (xPos == 0 && yPos >= 8  && yPos <10)    
+                {
+                    safeSendCC(0, Button7CC, 127, 0);
+                }  
+           else if (xPos == 0 && yPos >= 11  && yPos <13)    
+                {
+                    safeSendCC(0, Button8CC, 127, 0);
+                }
+}
+
+void repaint()
+
+{
+    clearDisplay();
+    fillScreen();
+}
+     
+
+void initialise()
+{
+    faderBankInteger = 0;
+}
+
+void fillScreen()
+{
+    //This section of the code handles what happens on each fader bank screen, either when idle or when pressed
+    
+    if (faderBankInteger == 0)    
+        
+        {
+
+            if (xPos >= 2 && xPos < 4)    
+                {
+                    fillRect (0xFFFFFF,  2,  yPos, 2, 15-yPos);
+                    lastYFader1 = yPos;
+                    safeSendCC(0, Fader1CC, fadervel1, LastFader1Vel);
+                    LastFader1Vel = fadervel1;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  2,  lastYFader1, 2, 15-lastYFader1);
+                }
+     
+            if (xPos >=5 && xPos <= 7)
+                {
+                    fillRect (0xFFFFFF,  5,  yPos, 2, 15-yPos);
+                    lastYFader2 = yPos;
+                    safeSendCC(0, Fader2CC, fadervel2, LastFader2Vel);
+                    LastFader2Vel = fadervel2;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  5,  lastYFader2, 2, 15-lastYFader2);
+                }
+     
+            if (xPos >=8 && xPos <= 10)
+                {   
+                    fillRect (0xFFFFFF,  8,  yPos, 2, 15-yPos);
+                    lastYFader3 = yPos;
+                    safeSendCC(0, Fader3CC, fadervel3, LastFader3Vel);
+                    LastFader3Vel = fadervel3;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  8,  lastYFader3, 2, 15-lastYFader3);
+                }    
+     
+            if (xPos >=11 && xPos <= 13)    
+                {
+                    fillRect (0xFFFFFF,  11,  yPos, 2, 15-yPos);
+                    lastYFader4 = yPos;
+                    safeSendCC(0, Fader4CC, fadervel4, LastFader4Vel);
+                    LastFader4Vel = fadervel4;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  11,  lastYFader4, 2, 15-lastYFader4); 
+                }
+     
+       }
+ 
+    if (faderBankInteger == 1)
+    
+        {
+     
+            if (xPos >= 2 && xPos < 4)    
+                {
+                    fillRect (0xFFFFFF,  2,  yPos, 2, 15-yPos);
+                    lastYFader5 = yPos;
+                    safeSendCC(0, Fader5CC, fadervel1, LastFader5Vel);
+                    LastFader5Vel = fadervel1;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  2,  lastYFader5, 2, 15-lastYFader5);
+                }
+     
+            if (xPos >=5 && xPos <= 7)
+                {
+                    fillRect (0xFFFFFF,  5,  yPos, 2, 15-yPos);
+                    lastYFader6 = yPos;
+                    safeSendCC(0, Fader6CC, fadervel2, LastFader6Vel);
+                    LastFader6Vel = fadervel2;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  5,  lastYFader6, 2, 15-lastYFader6);
+                }
+     
+            if (xPos >=8 && xPos <= 10)
+                {   
+                    fillRect (0xFFFFFF,  8,  yPos, 2, 15-yPos);
+                    lastYFader7 = yPos;
+                    safeSendCC(0, Fader7CC, fadervel3, LastFader7Vel);
+                    LastFader7Vel = fadervel3;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  8,  lastYFader7, 2, 15-lastYFader7);
+                }    
+     
+            if (xPos >=11 && xPos <= 13)    
+                {
+                    fillRect (0xFFFFFF,  11,  yPos, 2, 15-yPos);
+                    lastYFader8 = yPos;
+                    safeSendCC(0, Fader8CC, fadervel4, LastFader8Vel);
+                    LastFader8Vel = fadervel4;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  11,  lastYFader8, 2, 15-lastYFader8); 
+                }         
+
+         }
+
+    if (faderBankInteger == 2)
+    
+        {
+     
+            if (xPos >= 2 && xPos < 4)    
+                {
+                    fillRect (0xFFFFFF,  2,  yPos, 2, 15-yPos);
+                    lastYFader9 = yPos;
+                    safeSendCC(0, Fader9CC, fadervel1, LastFader9Vel);
+                    LastFader9Vel = fadervel1;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  2,  lastYFader9, 2, 15-lastYFader9);
+                }
+     
+            if (xPos >=5 && xPos <= 7)
+                {
+                    fillRect (0xFFFFFF,  5,  yPos, 2, 15-yPos);
+                    lastYFader10 = yPos;
+                    safeSendCC(0, Fader10CC, fadervel2, LastFader10Vel);
+                    LastFader10Vel = fadervel2;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  5,  lastYFader10, 2, 15-lastYFader10);
+                }
+     
+            if (xPos >=8 && xPos <= 10)
+                {   
+                    fillRect (0xFFFFFF,  8,  yPos, 2, 15-yPos);
+                    lastYFader11 = yPos;
+                    safeSendCC(0, Fader11CC, fadervel3, LastFader11Vel);
+                    LastFader11Vel = fadervel3;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  8,  lastYFader11, 2, 15-lastYFader11);
+                }    
+     
+            if (xPos >=11 && xPos <= 13)    
+                {
+                    fillRect (0xFFFFFF,  11,  yPos, 2, 15-yPos);
+                    lastYFader12 = yPos;
+                    safeSendCC(0, Fader12CC, fadervel4, LastFader12Vel);
+                    LastFader12Vel = fadervel4;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  11,  lastYFader12, 2, 15-lastYFader12); 
+                }         
+
+         }
+	    
+if (faderBankInteger == 3)
+    
+     {
+     
+            if (xPos >= 2 && xPos < 4)    
+                {
+                    fillRect (0xFFFFFF,  2,  yPos, 2, 15-yPos);
+                    lastYFader13 = yPos;
+                    safeSendCC(0, Fader13CC, fadervel1, LastFader13Vel);
+                    LastFader13Vel = fadervel1;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  2,  lastYFader13, 2, 15-lastYFader13);
+                }
+     
+            if (xPos >=5 && xPos <= 7)
+                {
+                    fillRect (0xFFFFFF,  5,  yPos, 2, 15-yPos);
+                    lastYFader14 = yPos;
+                    safeSendCC(0, Fader14CC, fadervel2, LastFader14Vel);
+                    LastFader14Vel = fadervel2;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  5,  lastYFader14, 2, 15-lastYFader14);
+                }
+     
+            if (xPos >=8 && xPos <= 10)
+                {   
+                    fillRect (0xFFFFFF,  8,  yPos, 2, 15-yPos);
+                    lastYFader15 = yPos;
+                    safeSendCC(0, Fader15CC, fadervel3, LastFader15Vel);
+                    LastFader15Vel = fadervel3;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  8,  lastYFader15, 2, 15-lastYFader15);
+                }    
+     
+            if (xPos >=11 && xPos <= 13)    
+                {
+                    fillRect (0xFFFFFF,  11,  yPos, 2, 15-yPos);
+                    lastYFader16 = yPos;
+                    safeSendCC(0, Fader16CC, fadervel4, LastFader16Vel);
+                    LastFader16Vel = fadervel4;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  11,  lastYFader16, 2, 15-lastYFader16); 
+                }         
+
+         }
+
+    if (faderBankInteger == 4)    
+        
+        {
+
+            if (xPos >= 2 && xPos < 4)    
+                {
+                    fillRect (0xFFFFFF,  2,  yPos, 2, 15-yPos);
+                    lastYFader01 = yPos;
+                    safeSendCC(0, Fader01CC, fadervel1, LastFader01Vel);
+                    LastFader01Vel = fadervel1;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  2,  lastYFader01, 2, 15-lastYFader01);
+                }
+     
+            if (xPos >=5 && xPos <= 7)
+                {
+                    fillRect (0xFFFFFF,  5,  yPos, 2, 15-yPos);
+                    lastYFader02 = yPos;
+                    safeSendCC(0, Fader02CC, fadervel2, LastFader02Vel);
+                    LastFader02Vel = fadervel2;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  5,  lastYFader02, 2, 15-lastYFader02);
+                }
+     
+            if (xPos >=8 && xPos <= 10)
+                {   
+                    fillRect (0xFFFFFF,  8,  yPos, 2, 15-yPos);
+                    lastYFader03 = yPos;
+                    safeSendCC(0, Fader03CC, fadervel3, LastFader03Vel);
+                    LastFader03Vel = fadervel3;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  8,  lastYFader03, 2, 15-lastYFader03);
+                }    
+     
+            if (xPos >=11 && xPos <= 13)    
+                {
+                    fillRect (0xFFFFFF,  11,  yPos, 2, 15-yPos);
+                    lastYFader04 = yPos;
+                    safeSendCC(0, Fader04CC, fadervel4, LastFader04Vel);
+                    LastFader04Vel = fadervel4;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  11,  lastYFader04, 2, 15-lastYFader04); 
+                }
+     
+       }
+ 
+    if (faderBankInteger == 5)
+    
+        {
+     
+            if (xPos >= 2 && xPos < 4)    
+                {
+                    fillRect (0xFFFFFF,  2,  yPos, 2, 15-yPos);
+                    lastYFader05 = yPos;
+                    safeSendCC(0, Fader05CC, fadervel1, LastFader05Vel);
+                    LastFader05Vel = fadervel1;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  2,  lastYFader05, 2, 15-lastYFader05);
+                }
+     
+            if (xPos >=5 && xPos <= 7)
+                {
+                    fillRect (0xFFFFFF,  5,  yPos, 2, 15-yPos);
+                    lastYFader06 = yPos;
+                    safeSendCC(0, Fader06CC, fadervel2, LastFader06Vel);
+                    LastFader06Vel = fadervel2;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  5,  lastYFader06, 2, 15-lastYFader06);
+                }
+     
+            if (xPos >=8 && xPos <= 10)
+                {   
+                    fillRect (0xFFFFFF,  8,  yPos, 2, 15-yPos);
+                    lastYFader07 = yPos;
+                    safeSendCC(0, Fader07CC, fadervel3, LastFader07Vel);
+                    LastFader07Vel = fadervel3;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  8,  lastYFader07, 2, 15-lastYFader07);
+                }    
+     
+            if (xPos >=11 && xPos <= 13)    
+                {
+                    fillRect (0xFFFFFF,  11,  yPos, 2, 15-yPos);
+                    lastYFader08 = yPos;
+                    safeSendCC(0, Fader08CC, fadervel4, LastFader08Vel);
+                    LastFader08Vel = fadervel4;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  11,  lastYFader08, 2, 15-lastYFader08); 
+                }         
+
+         }
+
+    if (faderBankInteger == 6)
+    
+        {
+     
+            if (xPos >= 2 && xPos < 4)    
+                {
+                    fillRect (0xFFFFFF,  2,  yPos, 2, 15-yPos);
+                    lastYFader09 = yPos;
+                    safeSendCC(0, Fader09CC, fadervel1, LastFader09Vel);
+                    LastFader09Vel = fadervel1;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  2,  lastYFader09, 2, 15-lastYFader09);
+                }
+     
+            if (xPos >=5 && xPos <= 7)
+                {
+                    fillRect (0xFFFFFF,  5,  yPos, 2, 15-yPos);
+                    lastYFader010 = yPos;
+                    safeSendCC(0, Fader010CC, fadervel2, LastFader010Vel);
+                    LastFader010Vel = fadervel2;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  5,  lastYFader010, 2, 15-lastYFader010);
+                }
+     
+            if (xPos >=8 && xPos <= 10)
+                {   
+                    fillRect (0xFFFFFF,  8,  yPos, 2, 15-yPos);
+                    lastYFader011 = yPos;
+                    safeSendCC(0, Fader011CC, fadervel3, LastFader011Vel);
+                    LastFader011Vel = fadervel3;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  8,  lastYFader011, 2, 15-lastYFader011);
+                }    
+     
+            if (xPos >=11 && xPos <= 13)    
+                {
+                    fillRect (0xFFFFFF,  11,  yPos, 2, 15-yPos);
+                    lastYFader012 = yPos;
+                    safeSendCC(0, Fader012CC, fadervel4, LastFader012Vel);
+                    LastFader012Vel = fadervel4;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  11,  lastYFader012, 2, 15-lastYFader012); 
+                }         
+
+         }
+	    
+if (faderBankInteger == 7)
+    
+     {
+     
+            if (xPos >= 2 && xPos < 4)    
+                {
+                    fillRect (0xFFFFFF,  2,  yPos, 2, 15-yPos);
+                    lastYFader013 = yPos;
+                    safeSendCC(0, Fader013CC, fadervel1, LastFader013Vel);
+                    LastFader013Vel = fadervel1;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  2,  lastYFader013, 2, 15-lastYFader013);
+                }
+     
+            if (xPos >=5 && xPos <= 7)
+                {
+                    fillRect (0xFFFFFF,  5,  yPos, 2, 15-yPos);
+                    lastYFader014 = yPos;
+                    safeSendCC(0, Fader014CC, fadervel2, LastFader014Vel);
+                    LastFader014Vel = fadervel2;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  5,  lastYFader014, 2, 15-lastYFader014);
+                }
+     
+            if (xPos >=8 && xPos <= 10)
+                {   
+                    fillRect (0xFFFFFF,  8,  yPos, 2, 15-yPos);
+                    lastYFader015 = yPos;
+                    safeSendCC(0, Fader015CC, fadervel3, LastFader015Vel);
+                    LastFader015Vel = fadervel3;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  8,  lastYFader015, 2, 15-lastYFader015);
+                }    
+     
+            if (xPos >=11 && xPos <= 13)    
+                {
+                    fillRect (0xFFFFFF,  11,  yPos, 2, 15-yPos);
+                    lastYFader016 = yPos;
+                    safeSendCC(0, Fader016CC, fadervel4, LastFader016Vel);
+                    LastFader016Vel = fadervel4;
+                }
+            else
+                {
+                    fillRect (0xFFFFFF,  11,  lastYFader016, 2, 15-lastYFader016); 
+                }         
+
+         }
+//This section of the code handles switching between fader banks.
+//If the fader banks are 0-3, these are for the volume faders, and the button switches (between other fader banks) are drawn on the L and R of the screen. This is to prevent vertical (Y-axis) finger motion from accidentally changing fader banks during volume control.
+//If the fader banks are 4-7, these are for the pan faders, and the button switches (between other fader banks) are drawn on the top and bottom of the screen. This is to prevent horitontal (x-axis) finger motion from accidentally changing fader banks during pan control.
+//Therefore they need to be handled differently
+    
+
+      
+            if (xPos == 14 && yPos >= 2 && yPos <4)    
+                {
+                    faderBankInteger = 0;
+                }
+            if (xPos == 14 && yPos >= 5 && yPos <7)    
+                {
+                    faderBankInteger = 1;
+                }
+            if (xPos == 14 && yPos >= 8 && yPos <10)    
+                {
+                    faderBankInteger = 2;
+                }
+            if (xPos == 14 && yPos >= 11  && yPos <13)    
+                {
+                    faderBankInteger = 3;
+                }
+            if (xPos == 0 && yPos >= 2  && yPos <4)    
+                { 
+                    faderBankInteger = 4;
+                }  
+            if (xPos == 0 && yPos >= 5  && yPos <7)    
+                {
+                    faderBankInteger = 5;
+                }      
+            if (xPos == 0 && yPos >= 8  && yPos <10)    
+                {
+                    faderBankInteger = 6;
+                }  
+        
+            if (xPos == 0 && yPos >= 11  && yPos <13)    
+                {
+                    faderBankInteger = 7;
+                }  
+   
+
+
+
+        
+    //This section of the code handles the drawing of the buttons that switch between fader banks.
+    //If a fader bank is selected then it is drawn in green. If not, it is drawn in red.
+    
+    if (faderBankInteger == 0)
+        {
+            fillRect (0x00FF00, 14, 2, 1, 2);
+            fillRect (0xFF0000,  14, 5, 1, 2);
+            fillRect (0xFF0000,  14, 8, 1, 2);
+            fillRect (0xFF0000,  14, 11, 1, 2);
+            fillRect (0xFF0000,  0, 2, 1, 2);
+            fillRect (0xFF0000,  0, 5, 1, 2);
+            fillRect (0xFF0000,  0, 8, 1, 2);
+            fillRect (0xFF0000,  0, 11, 1, 2);
+        }
+    if (faderBankInteger == 1)
+        {
+            fillRect (0xFF0000,  14, 2, 1, 2);
+            fillRect (0x00FF00,  14, 5, 1, 2);
+            fillRect (0xFF0000,  14, 8, 1, 2);
+            fillRect (0xFF0000,  14, 11, 1, 2);
+            fillRect (0xFF0000,  0, 2, 1, 2);
+            fillRect (0xFF0000,  0, 5, 1, 2);
+            fillRect (0xFF0000,  0, 8, 1, 2);
+            fillRect (0xFF0000,  0, 11, 1, 2);
+        }
+    if (faderBankInteger == 2)
+        {
+            fillRect (0xFF0000,  14, 2, 1, 2);
+            fillRect (0xFF0000,  14, 5, 1, 2);
+            fillRect (0x00FF00,  14, 8, 1, 2);
+            fillRect (0xFF0000,  14, 11, 1, 2);
+            fillRect (0xFF0000,  0, 2, 1, 2);
+            fillRect (0xFF0000,  0, 5, 1, 2);
+            fillRect (0xFF0000,  0, 8, 1, 2);
+            fillRect (0xFF0000,  0, 11, 1, 2);
+        }
+   
+     if (faderBankInteger == 3)
+        {
+            fillRect (0xFF0000,  14, 2, 1, 2);
+            fillRect (0xFF0000,  14, 5, 1, 2);
+            fillRect (0xFF0000,  14, 8, 1, 2);
+            fillRect (0x00FF00,  14, 11, 1, 2);
+            fillRect (0xFF0000,  0, 2, 1, 2);
+            fillRect (0xFF0000,  0, 5, 1, 2);
+            fillRect (0xFF0000,  0, 8, 1, 2);
+            fillRect (0xFF0000,  0, 11, 1, 2);
+        }
+     if (faderBankInteger == 4)
+        {
+            fillRect (0xFF0000,  14, 2, 1, 2);
+            fillRect (0xFF0000,  14, 5, 1, 2);
+            fillRect (0xFF0000,  14, 8, 1, 2);
+            fillRect (0xFF0000,  14, 11, 1, 2);
+            fillRect (0x00FF00,  0, 2, 1, 2);
+            fillRect (0xFF0000,  0, 5, 1, 2);
+            fillRect (0xFF0000,  0, 8, 1, 2);
+            fillRect (0xFF0000,  0, 11, 1, 2);
+        }
+     if (faderBankInteger == 5)
+        {
+            fillRect (0xFF0000,  14, 2, 1, 2);
+            fillRect (0xFF0000,  14, 5, 1, 2);
+            fillRect (0xFF0000,  14, 8, 1, 2);
+            fillRect (0xFF0000,  14, 11, 1, 2);
+            fillRect (0xFF0000,  0, 2, 1, 2);
+            fillRect (0x00FF00,  0, 5, 1, 2);
+            fillRect (0xFF0000,  0, 8, 1, 2);
+            fillRect (0xFF0000,  0, 11, 1, 2);
+        }
+     if (faderBankInteger == 6)
+        {
+            fillRect (0xFF0000,  14, 2, 1, 2);
+            fillRect (0xFF0000,  14, 5, 1, 2);
+            fillRect (0xFF0000,  14, 8, 1, 2);
+            fillRect (0xFF0000,  14, 11, 1, 2);
+            fillRect (0xFF0000,  0, 2, 1, 2);
+            fillRect (0xFF0000,  0, 5, 1, 2);
+            fillRect (0x00FF00,  0, 8, 1, 2);
+            fillRect (0xFF0000,  0, 11, 1, 2);
+        }
+        
+       if (faderBankInteger == 7)
+        {
+            fillRect (0xFF0000,  14, 2, 1, 2);
+            fillRect (0xFF0000,  14, 5, 1, 2);
+            fillRect (0xFF0000,  14, 8, 1, 2);
+            fillRect (0xFF0000,  14, 11, 1, 2);
+            fillRect (0xFF0000,  0, 2, 1, 2);
+            fillRect (0xFF0000,  0, 5, 1, 2);
+            fillRect (0xFF0000,  0, 8, 1, 2);
+            fillRect (0x00FF00,  0, 11, 1, 2);
+        }
+
+ }
